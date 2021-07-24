@@ -1,0 +1,82 @@
+import React from 'react';
+//info
+import MovieHeroInfo from './MovieHeroInfo.component';
+
+
+const HeroSm=()=>{
+    return(<>
+        <div class="w-full h-48 absolute bottom-0 bg-black bg-opacity-50 z-10"/>
+        <div className=" absolute z-10 bottom-0 flex flex-col px-4 py-4 w-full">
+            <MovieHeroInfo/>
+        </div>
+        <img 
+        src="https://in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/zack-snyder-s-justice-league-et00047164-10-04-2021-03-22-49.jpg" 
+        alt="poster" 
+        className=" h-full"/>
+    </>);
+
+}
+
+const HeroMd=()=>{
+return(<>
+
+<div class="w-full h-60 absolute bottom-0 bg-black bg-opacity-50 z-10" />
+<div className=" absolute z-10 bottom-0 flex flex-col px-6 py-6 w-full">
+            <MovieHeroInfo/>
+ </div>
+<img 
+src="https://in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/zack-snyder-s-justice-league-et00047164-10-04-2021-03-22-49.jpg" 
+alt="poster" />
+</>)
+}
+
+const HeroLg =() =>{
+    return(<>
+
+    <div className="absolute z-10 w-full h-full" 
+    style={{backgroundImage:"linear-gradient(90deg, rgb(34, 34, 34) 24.97%, rgb(34, 34, 34) 38.3%, rgba(34, 34, 34, 0.04) 97.47%, rgb(34, 34, 34) 100%)" }}/>
+   <div className="flex absolute gap-10 w-full items-center z-10 px-36 py-24">
+        <div className="  w-70 h-96">
+            <img src="https://in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/zack-snyder-s-justice-league-et00047164-10-04-2021-03-22-49.jpg" 
+            alt="poster"
+            className="h-full w-full rounded-xl" />
+        </div>
+        <div className="flex flex-col">
+            <MovieHeroInfo/>
+        </div>
+   </div>
+
+
+
+    <img 
+    src="https://in.bmscdn.com/iedb/movies/images/extra/horizontal_no_logo/mobile/listing/xxlarge/zack-snyder-s-justice-league-et00047164-10-04-2021-03-22-49.jpg" 
+    alt="poster" 
+    className="w-full h-full"
+    />
+
+    
+
+        </>)
+}
+
+const MovieHero = () => {
+    return (
+        <>
+        <div>
+            <div  className="relative md:hidden w-full" style={{ height: "calc(180vw)" }}>
+                <HeroSm/>
+            </div>
+            <div className=" relative hidden md:block lg:hidden">
+                <HeroMd/>
+            </div>
+            <div className=" relative hidden lg:block " style={{ height: "calc(35vw)" }}>
+                <HeroLg/>
+            </div>
+        </div>
+
+            
+        </>
+    )
+}
+
+export default MovieHero;

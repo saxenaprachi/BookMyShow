@@ -1,8 +1,7 @@
 // HOC
 import DefaultHOC from "./hoc/Default.HOC";
+import MovieHOC from "./hoc/Movie.HOC";
 
-//component
-import Navbar from "./components/Navbar/navbar.component";
 
 
 
@@ -14,7 +13,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 //pages
 import Home from "./Pages/Home.page";
+
 import { StrictMode } from "react";
+import MoviePage from "./Pages/Movie.page";
+
 
 
 
@@ -22,8 +24,8 @@ function App() {
   return (
     <>
     <StrictMode>
-      <DefaultHOC path="/" exact component={Navbar} />
       <DefaultHOC path="/" exact component={Home} />
+      <MovieHOC path="/movie/:id" exact component={MoviePage} />
     </StrictMode>
     </>
   );

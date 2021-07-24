@@ -33,10 +33,10 @@ const HeroCarousel = () => {
   };
 
 
-const images = ["https://images.unsplash.com/photo-1626183180592-5fb63f4dc501?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-"https://images.unsplash.com/photo-1626086317969-12bfc331c17d?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-"https://images.unsplash.com/photo-1626398836468-c9054b979ad0?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-"https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+const images = ["https://in.bmscdn.com/promotions/cms/creatives/1626372139417_bsm_1280x500_chickflick_2.jpg",
+"https://in.bmscdn.com/promotions/cms/creatives/1625135512787_bas_1280x500.jpg",
+"https://in.bmscdn.com/promotions/cms/creatives/1626791718659_pizzaalovestory_1280x500webbannerios.jpg",
+"https://in.bmscdn.com/promotions/cms/creatives/1626939535622_resistance_1280x500webbannerios.jpg",
 ];
 
   return(
