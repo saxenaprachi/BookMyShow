@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import Poster from '../Poster/Poster.component';
 
  const PosterSlider = (props) => {
+    const PosterSettings= props.config? props.config: settings;
+
     return (
         <div>
             <div className="container mx-auto px-2">
@@ -12,7 +14,7 @@ import Poster from '../Poster/Poster.component';
                 <h2 className="font-bold text-2xl ">{props.title}</h2>
                 <p>{props.subtitle}</p>
             </div>
-            <Slider {...settings}>
+            <Slider {...PosterSettings}>
             
             {props.images.map((image)=>(
                 <Poster {...image} isDark={props.isDark}/>
