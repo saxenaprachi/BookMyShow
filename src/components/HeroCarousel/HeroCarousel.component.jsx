@@ -1,5 +1,9 @@
-import React from "react";
+import axios from "axios";
+import React, {useState, useEffect} from "react";
 import HeroSlider from "react-slick";
+
+
+
 
 
 
@@ -8,7 +12,21 @@ import HeroSlider from "react-slick";
 import { NextArrow, PrevArrow } from "./Arrows.component";
 
 const HeroCarousel = () => {
+  
+  const [images, setImages] = useState([]);
 
+  useEffect(()=>{
+    //async
+
+    const requestNowPlayingMovies = async() =>{
+      const getImages =await axios.get("/movie/now_playing");
+      setImages(getImages.data.results);
+    }
+    requestNowPlayingMovies();
+  }, []);
+
+
+  
   const settingsLg={
     arrows: true,
     centerMode: true,
@@ -33,12 +51,6 @@ const HeroCarousel = () => {
   };
 
 
-const images = ["https://in.bmscdn.com/promotions/cms/creatives/1626372139417_bsm_1280x500_chickflick_2.jpg",
-"https://in.bmscdn.com/promotions/cms/creatives/1625135512787_bas_1280x500.jpg",
-"https://in.bmscdn.com/promotions/cms/creatives/1626791718659_pizzaalovestory_1280x500webbannerios.jpg",
-"https://in.bmscdn.com/promotions/cms/creatives/1626939535622_resistance_1280x500webbannerios.jpg",
-];
-
   return(
     <>
 
@@ -46,7 +58,7 @@ const images = ["https://in.bmscdn.com/promotions/cms/creatives/1626372139417_bs
       <HeroSlider {...settings}>  
         {images.map((image) => (
           <div className="w-full h-64 md:h-96 py-3">
-            <img src={image} alt="testing" className="w-full h-full rounded-md" />
+            <img src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`} alt="testing" className="w-full h-full rounded-md" />
           </div>
         ))}
       </HeroSlider>
@@ -56,7 +68,7 @@ const images = ["https://in.bmscdn.com/promotions/cms/creatives/1626372139417_bs
       <HeroSlider {...settingsLg}>  
         {images.map((image) => (
           <div className="w-2/3 h-96 px-2 py-3">
-            <img src={image} alt="testing" className="w-full h-full rounded-md" />
+            <img src={`https://image.tmdb.org/t/p/original/${image.backdrop_path}`} alt="testing" className="w-full h-full rounded-md" />
           </div>
         ))}
       </HeroSlider>
