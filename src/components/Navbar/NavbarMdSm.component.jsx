@@ -1,16 +1,20 @@
-import React from "react";
+import React,{useContext} from "react";
 import { BiSearch, BiShareAlt } from "react-icons/bi";
 import { GiHamburgerMenu} from "react-icons/gi";
 import { FiChevronDown} from "react-icons/fi";
+import { MovieContext } from "../../context/movie.context";
 
 
 
 const NavMdSm =() =>{
+
+    const {movie} = useContext(MovieContext);
+
     return <>
     <div className="flex justify-between items-center ">
         <div className="flex-col justify-around px-3 py-2">
             <h3 className=" text-md">
-                It All Starts Here!
+                {movie.original_title}
             </h3>
         </div>
         <div className="text-2xl px-3">

@@ -1,55 +1,28 @@
-import React from 'react';
+import axios from 'axios';
+import React,{useContext,useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import {MovieContext} from '../../../../context/movie.context';
 
 
 const Cast = () => {
 
-    const CastDetails =[
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-       
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-        {
-            src :"https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg",
-            title:"Henry Cavill",
-            subtitle:"as Superman/ Clark Kent",
-        },
-       
-       
-       
-    ];
+
+  const {movie}  = useContext(MovieContext);
+  const {id} =useParams();
+
+  const [cast, setCast]= useState([]);
+
+  useEffect(() => {
+    const requestCast = async() =>{
+      const getCast = await axios.get(`/movie/${id}/credits`);
+      setCast(getCast.data.cast);
+    }
+    requestCast();
+  }, [id]);
+
+  console.log(cast);
+
 
     const settings={
 
@@ -92,11 +65,11 @@ const Cast = () => {
           <h1 className=" text-2xl font-bold">Cast</h1>
           <Slider {...settings}>
               {
-                  CastDetails.map((cast)=>(
+                  cast.map((castdata)=>(
                       <div className="flex flex-col gap-2 px-4">
-                          <img className="rounded-full" src={cast.src} alt={cast.title} />
-                          <h3 className="fs3 font-bold text-center ">{cast.title}</h3>
-                          <p className="text-xs text-gray-600 text-center">{cast.subtitle}</p>
+                          <img className="rounded-full" src={`https://image.tmdb.org/t/p/original/${castdata.profile_path}`} alt={castdata.title} />
+                          <h3 className="fs3 font-bold text-center ">{castdata.original_name}</h3>
+                          <p className="text-xs text-gray-600 text-center">{castdata.character}</p>
                       </div>
                   ))
               }

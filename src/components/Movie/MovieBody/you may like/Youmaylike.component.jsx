@@ -1,8 +1,24 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import Slider from '../../../PosterSlider/PosterSlider.component';
-import TempPosters from '../../../../Config/TempPoster.config';
+import { useParams } from 'react-router';
+import axios from 'axios';
 
 const Youmaylike = () => {
+
+  const {id}= useParams();
+
+  const [similar, setSimilar]= useState([]);
+
+  useEffect(() => {
+
+    const requestSimilar = async() =>{
+      const getSimilar = await axios.get(`/movie/${id}/similar`);
+      setSimilar(getSimilar.data.results);
+    }
+    requestSimilar();
+   
+  }, [id])
+
     const settings={
         autoplay: false,
         slidesToShow: 4,
@@ -37,7 +53,7 @@ const Youmaylike = () => {
     return (
         <>
            <div className="container my-40 lg:my-5">
-           <Slider config={settings} images={TempPosters} title="You might also like" subtitle="" isDark={false}/>
+           <Slider config={settings} images={similar} title="You might also like" subtitle="" isDark={false}/>
            </div>
 
         </>

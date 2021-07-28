@@ -1,6 +1,14 @@
-import React from 'react'
+import React,{useContext} from 'react';
+import { MovieContext } from '../../context/movie.context';
+
 
 const MovieHeroInfo = () => {
+
+    const {movie}= useContext(MovieContext);
+
+    //optional chaining
+    const genres = movie.genres?.map(({name})=>name).join(", ");
+
     return (
         <>
         <div className="flex flex-col gap-4 lg:gap-8">
@@ -14,17 +22,16 @@ const MovieHeroInfo = () => {
                 </div>
 
             </div>
-            <h1 className="hidden lg:block text-white text-4xl font-bold"> Zack Snyder`s Justice League</h1>
+            <h1 className="hidden lg:block text-white text-4xl font-bold"> {movie.original_title}</h1>
             <div className="flex flex-col-reverse gap-2 lg:gap-8 lg:flex-col">
             <div className="text-xs text-white flex flex-col gap-2 lg:gap-4 md:text-base lg:text-lg">
                 <h3>
-                English &bull; Languages: Audio(1), Subtitles(1)
+                {movie.original_language}&bull; Languages: Audio(1), Subtitles(1)
                 </h3>
                 <h3>
-                4h 1m &bull; Action, Adventure, Fantasy &bull;16+ &bull;18 Mar, 2021
+                {movie.runtime} mins&bull; {genres} &bull;16+ &bull; {movie.release_date}
                 </h3>
-                <p className="text-xs text-white lg:hidden">Bruce Wayne and Diana Prince try to bring the metahumans of Earth together after the death of Clark Kent.
-                     Meanwhile, Darkseid sends Steppenwolf to Earth with an army to subjugate humans.</p>
+                <p className="text-xs text-white lg:hidden">{movie.overview}</p>
             </div>
             <div className="flex gap-1 lg:gap-4">
                 <button className="bg-red-600 rounded-md text-white w-1/2 font-bold py-1 md:py-2 lg:py-4 lg:rounded-xl ">Rent ₹149</button>
