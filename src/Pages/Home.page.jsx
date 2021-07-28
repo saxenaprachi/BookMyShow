@@ -1,14 +1,48 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import EntertainmentSlider from "../components/Entertainment/EntertainmentCard.component";
 import HeroCarousel from "../components/HeroCarousel/HeroCarousel.component";
 import PosterSlider from "../components/PosterSlider/PosterSlider.component";
-import TempPosters from "../Config/TempPoster.config";
 
-
+import axios from "axios";
 
 
 
 const Home =(props)=>{
+
+  const [popularMovies, SetPopularMovies]= useState([]);
+  const [topRatedMovies, SetTopRatedMovies]= useState([]);
+  const [upcomingMovies, SetUpcomingMovies]= useState([]);
+
+  useEffect(()=>{
+    const requestPopularMovies = async() =>{
+      const getPopularMovies = await axios.get("/movie/popular");
+      SetPopularMovies(getPopularMovies.data.results);
+      
+    }
+    requestPopularMovies();
+  } 
+  ,[]);
+
+  useEffect(()=>{
+    const requestTopRatedMovies = async() =>{
+      const getTopRatedMovies = await axios.get("/movie/top_rated");
+      SetTopRatedMovies(getTopRatedMovies.data.results);
+      
+    }
+    requestTopRatedMovies();
+  } 
+  ,[]);
+
+  useEffect(()=>{
+    const requestUpcomingMovies = async() =>{
+      const getUpcomingMovies = await axios.get("/movie/upcoming");
+      SetUpcomingMovies(getUpcomingMovies.data.results);
+      
+    }
+    requestUpcomingMovies();
+  } 
+  ,[]);
+  
 
     return(
         <>
@@ -41,23 +75,18 @@ const Home =(props)=>{
                   className="w-5/6 h-full"/>
               </div>
 
-      <PosterSlider images={TempPosters} title="Premiers" subtitle="Brand New Realese every Friday" isDark/>
+      <PosterSlider images={popularMovies} title="Premiers" subtitle="Brand New Realese every Friday" isDark/>
 
       </div>
 
       <div>
-      <PosterSlider images={TempPosters} title="Online Streaming Events" subtitle="" isDark={false}/>
+      <PosterSlider images={topRatedMovies} title="Top Rated Movies" subtitle="" isDark={false}/>
       </div>
       <div>
-      <PosterSlider images={TempPosters} title="Outdoor Events" subtitle="" isDark={false}/>
+      <PosterSlider images={upcomingMovies} title="Upcoming Moives" subtitle="" isDark={false}/>
       </div>
-      <div>
-      <PosterSlider images={TempPosters} title="Laughter Therapy" subtitle="" isDark={false}/>
-      </div>
-      <div>
-      <PosterSlider images={TempPosters} title="Popular Events" subtitle="" isDark={false}/>
-      </div>
-      </div>
+
+    </div>
 
         </>
     )
